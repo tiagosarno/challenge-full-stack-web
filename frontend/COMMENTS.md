@@ -24,7 +24,7 @@ Foi adotado o padrão de commit "Conventional Commits" para ajudar a padronizar 
 exemplo:
 
 - feat (Alunos): interface de listagem dos alunos
-  -- Pesquisa de alunos, cadastro, edição e exclusão de registros.
+  - Pesquisa de alunos, cadastro, edição e exclusão de registros.
 
 ## Decisões de Arquitetura
 
@@ -34,13 +34,13 @@ exemplo:
 
 - Utilização do Vue3 com Typescript, tornando a aplicação atual e robusta
 - Utilização do Vuetify devido grandes vantagens deste framework de UI como:
-  -- Componentes prontos e altamente personalizáveis
-  -- Design responsivo e Mobile-First
-  -- Integração com Vue 3 e Composition API
-  -- Padronização visual com Material Design
-  -- Facilidade de prototipagem e desenvolvimento rápido
-  -- Suporte a internacionalização (i18n) e acessibilidade (a11y)
-  -- Comunidade ativa e documentação rica
+  - Componentes prontos e altamente personalizáveis
+  - Design responsivo e Mobile-First
+  - Integração com Vue 3 e Composition API
+  - Padronização visual com Material Design
+  - Facilidade de prototipagem e desenvolvimento rápido
+  - Suporte a internacionalização (i18n) e acessibilidade (a11y)
+  - Comunidade ativa e documentação rica
 - Componentização das interfaces para torna-las mais legíveis e de fácil manutenção
 - Utilização de uma camada de serviços "services", onde foi utilizada a biblioteca "axios" para prover comunicação com a API
 
