@@ -27,9 +27,9 @@ const studentsFiltered = computed(() => {
         student.email.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
         student.ra.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
         student.cpf
-          .replace(/\D/g, "")
+          .replace(/[.-]/g, "")
           .toLowerCase()
-          .includes(studentsSearchField.value?.replace(/\D/g, "").toLowerCase())
+          .includes(studentsSearchField.value?.replace(/[.-]/g, "").toLowerCase())
       )
     })
   }
