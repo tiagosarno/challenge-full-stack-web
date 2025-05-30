@@ -13,24 +13,31 @@ git clone URL_DO_PROJETO
 Acesse a pasta do projeto:
 
 cd seu-projeto
-Instale as dependências:
+
+# Instalação das dependências
 
 npm install
+
 Copie o arquivo .env.example para .env e configure as variáveis de ambiente:
 
 cp .env.example .env
+
 Gere a chave APP_KEY (necessária para o Adonis.js):
 
 node ace generate:key
-Configuração do Banco de Dados (MySQL)
+
+## Configuração do Banco de Dados (MySQL)
+
 Configure as credenciais do banco de dados no arquivo .env
 
-Execute as migrations:
+## Migrations
 
 node ace migration:run
 
-Executando a Aplicação
+## Executando a Aplicação
+
 Para iniciar o servidor em modo desenvolvimento:
 
 node ace serve --watch
-O servidor estará disponível em: http://localhost:3333
+
+## O servidor estará disponível em: http://localhost:3333
