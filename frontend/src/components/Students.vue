@@ -13,13 +13,6 @@ const handleDeleteStudent = studentId => {
   students.value = students.value.filter(student => student.id !== studentId)
 }
 
-const handleSearchStudents = (searchTerm: string) => {
-  if (!searchTerm) {
-    return students.value
-  }
-  return students.value.filter(student => student.name.toLowerCase().includes(searchTerm.toLowerCase()))
-}
-
 onMounted(() => {
   api.get("/students").then(res => {
     students.value = res.data
@@ -33,7 +26,10 @@ const studentsFiltered = computed(() => {
         student.name.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
         student.email.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
         student.ra.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
-        student.cpf.toLowerCase().includes(studentsSearchField.value?.toLowerCase())
+        student.cpf
+          .replace(/\D/g, "")
+          .toLowerCase()
+          .includes(studentsSearchField.value?.replace(/\D/g, "").toLowerCase())
       )
     })
   }
