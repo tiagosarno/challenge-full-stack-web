@@ -40,23 +40,10 @@ exemplo:
 
 **Solução Implementada:**
 // app/Controllers/Http/BaseController.ts
-export default abstract class BasesController {
-protected abstract getModel(): any
+export default abstract class BasesController {}
 
-public async index({ response }: HttpContext) {
-try {
-const model = this.getModel()
-const data = await model.all()
-return response.ok(data)
-} catch (error) {
-return response.internalServerError(error.message)
-}
-}
-}
-
-// Controller concreto
+// Exemplo controller concreto
 import BasesController from './bases_controller.js'
-import Student from '#models/student'
 
 export default class StudentsController extends BasesController {
 protected getModel() {
@@ -83,7 +70,3 @@ return Student
 - Criação do endpoint para autenticação de usuários na plataforma.
 
 ## Bibliotecas de Terceiros
-
-- eslint
-- prettier
-- mysql2
