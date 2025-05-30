@@ -24,7 +24,7 @@ Foi adotado o padrão de commit "Conventional Commits" para ajudar a padronizar 
 exemplo:
 
 - feat (Alunos): implementação do endpoint
-  -- criação dos endpoints CRUD a partir da herança da classe abstrata BaseController
+  - criação dos endpoints CRUD a partir da herança da classe abstrata BaseController
 
 ## Decisões de Arquitetura
 
@@ -39,17 +39,20 @@ exemplo:
 - Dificuldade em manter consistência entre endpoints
 
 **Solução Implementada:**
-// app/Controllers/Http/BaseController.ts
-export default abstract class BasesController {}
 
-// Exemplo controller concreto
-import BasesController from './bases_controller.js'
+- //app/Controllers/Http/BaseController.ts
 
-export default class StudentsController extends BasesController {
-protected getModel() {
-return Student
-}
-}
+  - export default abstract class BasesController {}
+
+- Exemplo controller concreto
+
+  - import BasesController from './bases_controller.js'
+
+  - export default class StudentsController extends BasesController {
+  - protected getModel() {
+  - return Student
+  - }
+  - }
 
 **Vantagens:**
 
