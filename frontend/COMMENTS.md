@@ -44,6 +44,10 @@ exemplo:
 - Componentização das interfaces para torna-las mais legíveis e de fácil manutenção
 - Utilização de uma camada de serviços "services", onde foi utilizada a biblioteca "axios" para prover comunicação com a API
 
+**Importante**
+
+- Foi criada uma variável de ambiente "VUE_APP_API_URL" no arquivo .env para apontar para a URL da API
+
 **Vantagens:**
 
 - Redução de tempo para manutenções corretivas e adaptativas
