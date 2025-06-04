@@ -11,9 +11,9 @@ const props = defineProps({
 const emit = defineEmits(["delete"])
 
 const dialog = ref(false)
-const studentToDelete = ref(null)
+const studentToDelete = ref<number | string>("")
 
-const openDialog = student => {
+const openDialog = (student: number) => {
   studentToDelete.value = student
   dialog.value = true
 }

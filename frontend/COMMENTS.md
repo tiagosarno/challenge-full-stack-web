@@ -59,6 +59,7 @@ exemplo:
 
 - Poderia ser pensado formas melhores para se trabalhar a validação das informações de interface e granularização dos componentes e páginas.
 - Ao realizar o crescimento da plataforma poderia ser trabalho o uso de centralizadores de variáveis de estado da aplicação por meio do "Pinia", para entregar uma experiência de usuário fluída devido compartilhamento de estados entre os componentes da aplicação.
+- Realizei uma refatoração referente a aplicação do TypeScript para entregar uma codificação com melhor tipagem, para melhorar manutenção e arquitetura mais moderna.
 
 ## Bibliotecas de Terceiros
 
