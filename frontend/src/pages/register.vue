@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, computed } from "vue"
 import { useRouter, useRoute } from "vue-router"
+import type { AxiosResponse } from "axios"
 import api from "@/services/api"
 
 import { mask } from "vue-the-mask"
@@ -13,25 +14,47 @@ const loading = ref(false)
 const isEditMode = ref(false)
 const alunoId = ref(null)
 
-const form = ref({
+interface FormData {
+  name: string
+  email: string
+  ra: number | string
+  cpf: string
+}
+
+interface Student {
+  id: number
+  name: string
+  email: string
+  ra: number
+  cpf: string
+}
+
+const form = ref<FormData>({
   name: "",
   email: "",
   ra: "",
   cpf: "",
 })
+
 const snackbar = ref(false)
 const snackbarText = ref("")
 const snackbarColor = ref("blue-lighten-5")
 
 const nameRules = [
-  v => !!v || "Nome é obrigatório",
-  v => (v && v.length >= 3) || "Nome deve ter pelo menos 3 caracteres",
+  (v: string) => !!v || "Nome é obrigatório",
+  (v: string) => (v && v.length >= 3) || "Nome deve ter pelo menos 3 caracteres",
 ]
-const emailRules = [v => !!v || "E-mail é obrigatório", v => /.+@.+\..+/.test(v) || "E-mail deve ser válido"]
-const raRules = [v => !!v || "RA é obrigatório", v => (v || "").length <= 10 || "RA com no máximo de 10 caracteres"]
+const emailRules = [
+  (v: string) => !!v || "E-mail é obrigatório",
+  (v: string) => /.+@.+\..+/.test(v) || "E-mail deve ser válido",
+]
+const raRules = [
+  (v: string) => !!v || "RA é obrigatório",
+  (v: string) => (v || "").length <= 10 || "RA com no máximo de 10 caracteres",
+]
 const cpfRules = [
-  v => !!v || "CPF é obrigatório",
-  v => (v && v.length === 14 && cpfValidator.isValid(form.value.cpf.replace(/\D/g, ""))) || "CPF inválido",
+  (v: string) => !!v || "CPF é obrigatório",
+  (v: string) => (v && v.length === 14 && cpfValidator.isValid(form.value.cpf.replace(/\D/g, ""))) || "CPF inválido",
 ]
 
 const formIsValid = computed(() => {
@@ -42,15 +65,15 @@ const formIsValid = computed(() => {
     form.value.cpf &&
     nameRules.every(rule => rule(form.value.name) === true) &&
     emailRules.every(rule => rule(form.value.email) === true) &&
-    raRules.every(rule => rule(form.value.ra) === true) &&
+    raRules.every(rule => rule(String(form.value.ra)) === true) &&
     cpfRules.every(rule => rule(form.value.cpf) === true)
   )
 })
 
-const loadStudentData = async id => {
+const loadStudentData = async (id: number): Promise<void> => {
   loading.value = true
   try {
-    const response = await api.get(`/students/${id}`)
+    const response: AxiosResponse<Student> = await api.get(`/students/${id}`)
     form.value = response.data
   } catch (error) {
     console.error("Erro ao carregar aluno:", error)
