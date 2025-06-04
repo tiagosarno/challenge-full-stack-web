@@ -3,14 +3,22 @@ import StudentDeleteDialog from "./StudentDeleteDialog.vue"
 import { defineComponent, ref, onMounted, computed } from "vue"
 import api from "@/services/api"
 
+interface Student {
+  id: number
+  name: string
+  email: string
+  ra: number
+  cpf: string
+}
+
 const loaded = ref(false)
 const loading = ref(false)
 const students = ref([])
 const studentsSearchField = ref([])
 
-const handleDeleteStudent = studentId => {
+const handleDeleteStudent = (studentId: number) => {
   api.delete(`/students/${studentId}`)
-  students.value = students.value.filter(student => student.id !== studentId)
+  students.value = students.value.filter((student: Student) => student.id !== studentId)
 }
 
 onMounted(() => {
@@ -21,11 +29,11 @@ onMounted(() => {
 
 const studentsFiltered = computed(() => {
   if (students.value && studentsSearchField.value.length > 0) {
-    return students.value.filter(student => {
+    return students.value.filter((student: Student) => {
       return (
-        student.name.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
-        student.email.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
-        student.ra.toLowerCase().includes(studentsSearchField.value?.toLowerCase()) ||
+        student.name.toLowerCase().includes(studentsSearchField.value?.toString().toLowerCase()) ||
+        student.email.toLowerCase().includes(studentsSearchField.value?.toString().toLowerCase()) ||
+        student.ra.toString().toLowerCase().includes(studentsSearchField.value?.toString().toLowerCase()) ||
         student.cpf
           .replace(/[.-]/g, "")
           .toLowerCase()
